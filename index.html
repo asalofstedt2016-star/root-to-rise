@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Root to Rise &mdash; Åsa Löfstedt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --cream-alt: #ede8dd;
+      --green: #2b3a2c;
+      --gold: #b89a5a;
+      --text: #242420;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ---- TYPOGRAPHY ---- */
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .overline {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ---- BUTTONS ---- */
+    .btn {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--text);
+      color: var(--text);
+      padding: 0.75rem 2rem;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    }
+    .btn:hover {
+      background: var(--green);
+      color: var(--cream);
+      border-color: var(--green);
+    }
+    .btn--gold {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .btn--gold:hover {
+      background: var(--gold);
+      color: var(--cream);
+      border-color: var(--gold);
+    }
+    .btn--light {
+      border-color: var(--cream);
+      color: var(--cream);
+    }
+    .btn--light:hover {
+      background: var(--cream);
+      color: var(--green);
+      border-color: var(--cream);
+    }
+
+    /* ---- LAYOUT ---- */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section { padding: 5rem 0; }
+
+    /* ---- NAV ---- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--cream-alt);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .nav-logo {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--text);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--cream);
+        border-bottom: 1px solid var(--cream-alt);
+        padding: 1.5rem;
+        gap: 1.25rem;
+      }
+      .nav-links.open { display: flex; }
+    }
+
+    /* ---- HERO ---- */
+    #hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem;
+      background: var(--cream);
+    }
+    .hero-inner { max-width: 780px; }
+    .hero-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--green);
+      margin-bottom: 2rem;
+    }
+    .hero-attribution {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ---- OM ÅSA ---- */
+    #om-asa {
+      background: var(--cream-alt);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .section-heading {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--green);
+      margin-bottom: 1.25rem;
+    }
+    .section-heading em {
+      font-style: italic;
+    }
+    .section-body {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .profile-photo {
+      width: 100%;
+      max-width: 360px;
+      display: block;
+      margin: 0 0 1.5rem auto;
+      object-fit: cover;
+    }
+    .feature-image {
+      width: 100%;
+      max-width: 520px;
+      margin-top: 2rem;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ---- OM KURSEN ---- */
+    #om-kursen { background: var(--cream); }
+    #om-kursen .section-content { max-width: 640px; }
+
+    /* ---- KURSINNEHALL ---- */
+    #kursinnehall { background: var(--cream-alt); }
+    .course-cards {
+      margin-top: 2.5rem;
+      border-top: 1px solid rgba(43,58,44,0.15);
+    }
+    .course-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(43,58,44,0.15);
+    }
+    .course-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+      min-width: 70px;
+      flex-shrink: 0;
+    }
+    .course-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+    .course-text p {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    @media (max-width: 480px) {
+      .course-card { gap: 1.25rem; }
+      .course-number { font-size: 2.5rem; min-width: 50px; }
+    }
+
+    /* ---- HIM ---- */
+    #him { background: var(--green); color: var(--cream); }
+    #him .overline { color: var(--gold); }
+    #him .section-heading { color: var(--cream); }
+    .him-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .him-grid { grid-template-columns: 1fr; }
+    }
+    .him-card {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(245,240,232,0.15);
+      position: relative;
+    }
+    .him-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      font-weight: 400;
+      color: var(--cream);
+      opacity: 0.08;
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+    .him-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .him-card p {
+      font-size: 0.95rem;
+      color: rgba(245,240,232,0.85);
+    }
+
+    /* ---- TESTIMONIALS ---- */
+    #testimonials { background: var(--cream-alt); }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .testimonial-grid { grid-template-columns: 1fr; }
+    }
+    .testimonial-card {
+      background: #fff;
+      border-left: 3px solid var(--gold);
+      padding: 2rem 2rem 2rem 1.75rem;
+    }
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .testimonial-attr {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ---- QUOTE BANNER ---- */
+    #quote-banner {
+      background: var(--green);
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+    .banner-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 400;
+      color: var(--gold);
+      max-width: 780px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    /* ---- EVENTS ---- */
+    #events { background: var(--cream); }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 900px) {
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .events-grid { grid-template-columns: 1fr; }
+    }
+    .event-card {
+      background: var(--green);
+      color: var(--cream);
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .event-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+    .event-card p {
+      font-size: 0.92rem;
+      color: rgba(245,240,232,0.8);
+      flex: 1;
+    }
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: rgba(245,240,232,0.6);
+    }
+    .event-meta span { white-space: nowrap; }
+    .event-price {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .event-cta { margin-top: 0.5rem; }
+    .events-empty {
+      color: var(--text);
+      font-size: 0.95rem;
+      opacity: 0.6;
+      margin-top: 2rem;
+    }
+
+    /* ---- KONTAKT ---- */
+    #kontakt { background: var(--cream-alt); }
+    #kontakt .section-content { max-width: 580px; }
+    .kontakt-details {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .kontakt-details a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .kontakt-details a:hover { color: var(--gold); }
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      align-items: center;
+    }
+    .booking-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(43,58,44,0.2);
+      background: rgba(245,240,232,0.6);
+    }
+    .booking-box p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ---- VAD JAG ERBJUDER ---- */
+    #erbjuder { background: var(--cream); padding-bottom: 0; }
+    .erbjuder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .erbjuder-grid { grid-template-columns: 1fr; }
+    }
+    .offer-col { display: flex; flex-direction: column; gap: 2rem; }
+    .offer-card {
+      border: 1px solid rgba(43,58,44,0.12);
+      overflow: hidden;
+    }
+    .offer-card-header {
+      background: var(--green);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 0.85rem 1.5rem;
+    }
+    .offer-items { padding: 0.5rem 1.5rem 1rem; }
+    .offer-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(43,58,44,0.08);
+    }
+    .offer-item:last-child { border-bottom: none; }
+    .offer-item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--green);
+      margin-bottom: 0.2rem;
+    }
+    .offer-item-body {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .offer-items--check { padding: 0.75rem 1.5rem 1rem; }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .check-item::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      min-width: 14px;
+      margin-top: 3px;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%232b3a2c' stroke-width='1.5'%3E%3Cpath d='M2.5 8L6 11.5L13.5 4.5'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .for-dig-band {
+      background: var(--green);
+      margin-top: 4rem;
+      padding: 4rem 0;
+    }
+    .for-dig-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 500;
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .for-dig-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 768px) {
+      .for-dig-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .for-dig-grid { grid-template-columns: 1fr; }
+    }
+    .for-dig-item {
+      text-align: center;
+      color: rgba(245,240,232,0.85);
+    }
+    .for-dig-icon {
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: center;
+    }
+    .for-dig-item p { font-size: 0.95rem; line-height: 1.5; }
+    .for-dig-closing {
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      color: var(--gold);
+      padding-top: 2rem;
+      border-top: 1px solid rgba(245,240,232,0.15);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--green);
+      color: rgba(245,240,232,0.7);
+      padding: 3rem 1.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .footer-email {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+    .footer-email a {
+      color: rgba(245,240,232,0.7);
+      text-decoration: none;
+    }
+    .footer-email a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.75rem;
+      margin-top: 0.5rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Root to Rise</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Meny" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#om-asa">Om Åsa</a></li>
+        <li><a href="#om-kursen">Kursen</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-quote">&ldquo;Rota dig. Minns din sanning. Res dig. Lev ditt ljus.&rdquo;</p>
+      <p class="hero-attribution">Root to Rise &mdash; Åsa Löfstedt</p>
+    </div>
+  </section>
+
+  <!-- OM ÅSA -->
+  <section id="om-asa">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="overline">Om Åsa</span>
+          <h2 class="section-heading"><em>Bakom Root to Rise</em></h2>
+        </div>
+        <div>
+          <img src="images/profil-bild.jpg" alt="Porträtt av Åsa Löfstedt" class="profile-photo" />
+          <p class="section-body">Jag är Åsa - vägledare och djupt övertygad om naturens läkande kraft. Under många år har jag utforskat sambandet mellan vår inre värld och den yttre naturen. Root to Rise är min hjärtats vision: ett rum där uråldrigt vetande möter modern inre forskning, och där varje människa välkomnas precis som hon är.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OM KURSEN -->
+  <section id="om-kursen">
+    <div class="container">
+      <div class="section-content">
+        <span class="overline">Om kursen</span>
+        <h2 class="section-heading">En resa mot inre ro och <em>äkta förankring</em></h2>
+        <p class="section-body" style="margin-bottom: 2rem;">Kursen är en djupgående resa inåt, där du får verktyg och vägledning för att hitta din inre förankring och leva i större harmoni med dig själv och livet. Vi arbetar med kropp, sinne och ande i ett integrerat helhetsperspektiv.</p>
+        <a href="#kontakt" class="btn">Boka din plats</a>
+        <img src="images/root-to-rise.jpg" alt="Root to Rise i naturmiljö" class="feature-image" />
+      </div>
+    </div>
+  </section>
+
+  <!-- KURSINNEHALL -->
+  <section id="kursinnehall">
+    <div class="container">
+      <span class="overline">Kursinnehåll</span>
+      <h2 class="section-heading">Vad ingår i kursen</h2>
+      <div class="course-cards">
+        <div class="course-card">
+          <div class="course-number">01</div>
+          <div class="course-text">
+            <h3>Naturbaserad visdom</h3>
+            <p>Guidade övningar som anknyter dig till jordens rytmer.</p>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-number">02</div>
+          <div class="course-text">
+            <h3>Meditation &amp; energiarbete</h3>
+            <p>Andningsarbete, meditation och kroppsorienterade tekniker.</p>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-number">03</div>
+          <div class="course-text">
+            <h3>Självinsikt &amp; transformation</h3>
+            <p>Forntida visdomstraditioner integrerade på ett modernt sätt.</p>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-number">04</div>
+          <div class="course-text">
+            <h3>HIM-processen</h3>
+            <p>En unik metod för att bryta återkommande mönster.</p>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-number">05</div>
+          <div class="course-text">
+            <h3>Gemenskap &amp; stöd</h3>
+            <p>Delade upplevelser i en trygg grupp.</p>
+          </div>
+        </div>
+        <div class="course-card">
+          <div class="course-number">06</div>
+          <div class="course-text">
+            <h3>Personlig integrering</h3>
+            <p>Reflektionsövningar så att insikterna landar på djupet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIM-PROCESSEN -->
+  <section id="him">
+    <div class="container">
+      <span class="overline">HIM-processen</span>
+      <h2 class="section-heading">En unik metod för inre förändring</h2>
+      <div class="him-grid">
+        <div class="him-card">
+          <div class="him-letter">H</div>
+          <h3>Hela</h3>
+          <p>Vi börjar med att möta oss själva.</p>
+        </div>
+        <div class="him-card">
+          <div class="him-letter">I</div>
+          <h3>Integrera</h3>
+          <p>Vi vänder oss mot mönstren med nyfikenhet.</p>
+        </div>
+        <div class="him-card">
+          <div class="him-letter">M</div>
+          <h3>Manifestera</h3>
+          <p>Insikter omvandlas till levd förändring.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VAD JAG ERBJUDER -->
+  <section id="erbjuder">
+    <div class="container">
+      <span class="overline">Sammanställning av kursinnehåll</span>
+      <h2 class="section-heading">Vad jag erbjuder</h2>
+      <div class="erbjuder-grid">
+
+        <!-- Vänster kolumn -->
+        <div class="offer-col">
+          <div class="offer-card">
+            <div class="offer-card-header" id="erbjuder-karna-header">Kärnan</div>
+            <div class="offer-items" id="erbjuder-karna-items">
+              <div class="offer-item">
+                <div class="offer-item-title">Root to Rise – 6 veckor</div>
+                <div class="offer-item-body">En grundläggande resa inåt för att landa, läka och växa.</div>
+              </div>
+              <div class="offer-item">
+                <div class="offer-item-title">Root to Rise + HIM (Human Instrument Mastery)</div>
+                <div class="offer-item-body">Fördjupning där vi integrerar det mänskliga instrumentet i 3 av 6 moduler.</div>
+              </div>
+              <div class="offer-item">
+                <div class="offer-item-title">Djupgående kurs</div>
+                <div class="offer-item-body">För dig som vill gå på djupet och förvandla.</div>
+              </div>
+              <div class="offer-item">
+                <div class="offer-item-title">Boken Yinyoga och Sticksågen</div>
+                <div class="offer-item-body">Inspiration att läsa, reflektera och integrera i din vardag.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Höger kolumn -->
+        <div class="offer-col">
+          <div class="offer-card">
+            <div class="offer-card-header" id="erbjuder-ceremony-header">Ceremonier vid fullmåne</div>
+            <div class="offer-items" id="erbjuder-ceremony-items">
+              <div class="offer-item">
+                <div class="offer-item-title">Nymåne &amp; årstidsskiftningar</div>
+                <div class="offer-item-body">Ceremonier som hedrar cyklerna, skapar närvaro och intention. Vi samlas online eller live under fullmånens ljus.</div>
+              </div>
+            </div>
+          </div>
+          <div class="offer-card">
+            <div class="offer-card-header" id="erbjuder-kommande-header">Kommande</div>
+            <div class="offer-items offer-items--check" id="erbjuder-kommande-items">
+              <div class="check-item">Hela boken Yinyoga och Sticksågen</div>
+              <div class="check-item">Kursen Ett näringsrikt liv för dig med matutmaningar</div>
+              <div class="check-item">HIM på engelska</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Helbred band: Detta är för dig som... -->
+    <div class="for-dig-band">
+      <div class="container">
+        <h3 class="for-dig-heading">Detta är för dig som...</h3>
+        <div class="for-dig-grid">
+          <div class="for-dig-item">
+            <div class="for-dig-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" aria-hidden="true"><path d="M2 22c1-4 4-8 8-12S18 2 22 2c-1 4-4 8-8 12S3 22 2 22z"/><line x1="12" y1="10" x2="2" y2="22"/></svg>
+            </div>
+            <p>Vill landa i dig själv och hitta inre balans</p>
+          </div>
+          <div class="for-dig-item">
+            <div class="for-dig-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <p>Vill gå på djupet och växa inifrån</p>
+          </div>
+          <div class="for-dig-item">
+            <div class="for-dig-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </div>
+            <p>Vill leva i takt med naturens cykler</p>
+          </div>
+          <div class="for-dig-item">
+            <div class="for-dig-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" aria-hidden="true"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>
+            </div>
+            <p>Söker verktyg för ett mer näringsrikt liv</p>
+          </div>
+        </div>
+        <p class="for-dig-closing"><em>En resa tillbaka till dig själv – och vidare.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="container">
+      <span class="overline">Deltagarröster</span>
+      <h2 class="section-heading">Vad säger deltagarna</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Det här är den djupaste och mest omvälvande resa jag gjort inåt. Åsa håller rummet med sådan värme och närvaro att jag vågade gå dit jag aldrig vågat förut."</p>
+          <p class="testimonial-attr">- Kursdeltagare</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Jag har länge sökt ett sammanhang där det uråldriga möter det moderna. Root to Rise är precis det. Jag bär med mig insikter som fortsätter att öppna sig."</p>
+          <p class="testimonial-attr">- Kursdeltagare</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BANNER -->
+  <div id="quote-banner">
+    <p class="banner-quote">&ldquo;Rota dig. Minns din sanning. Res dig. Lev ditt ljus.&rdquo;</p>
+  </div>
+
+  <!-- EVENTS -->
+  <section id="events">
+    <div class="container">
+      <span class="overline">Kommande event</span>
+      <h2 class="section-heading">Kommande event</h2>
+      <div id="events-container"></div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-content">
+        <span class="overline">Nästa steg</span>
+        <h2 class="section-heading">Redo att sätta rötterna djupare?</h2>
+        <p class="section-body">Har du frågor om kursen eller vill du veta mer om vad Root to Rise kan erbjuda dig? Hör av dig, jag ser fram emot att höra från dig.</p>
+        <div class="booking-box">
+          <p>Boka ett kort samtal, 15 minuter med Åsa, för att se om det här är rätt för dig.</p>
+          <div class="cta-group">
+            <a href="mailto:asalofstedt2016@gmail.com" class="btn">Skicka e-post</a>
+            <a href="tel:+46708186566" class="btn">Ring Åsa</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-logo">Root to Rise</p>
+    <p class="footer-email"><a href="mailto:asalofstedt2016@gmail.com">asalofstedt2016@gmail.com</a></p>
+    <p class="footer-copy">&copy; 2026 Root to Rise &mdash; Åsa Löfstedt</p>
+  </footer>
+
+  <script>
+    // ---- NAV HAMBURGER ----
+    (function () {
+      var btn = document.getElementById('hamburger');
+      var links = document.getElementById('nav-links');
+      btn.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        btn.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          links.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }());
+
+    // ---- EVENTS LOADER ----
+    (function () {
+      var container = document.getElementById('events-container');
+
+      function parseFrontMatter(text) {
+        var parts = text.split('---');
+        if (parts.length < 2) return {};
+        var fm = parts[1];
+        var result = {};
+        fm.split('\n').forEach(function (line) {
+          var m = line.match(/^(\w+):\s*"?([^"]*)"?\s*$/);
+          if (m) result[m[1]] = m[2].trim();
+        });
+        return result;
+      }
+
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        var parts = dateStr.split('-');
+        if (parts.length !== 3) return dateStr;
+        var months = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+        var d = parseInt(parts[2], 10);
+        var m = parseInt(parts[1], 10) - 1;
+        var y = parts[0];
+        return d + ' ' + months[m] + ' ' + y;
+      }
+
+      function isUpcoming(dateStr) {
+        if (!dateStr) return false;
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        var parts = dateStr.split('-');
+        if (parts.length !== 3) return false;
+        var d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+        return d >= today;
+      }
+
+      function renderCard(ev) {
+        var card = document.createElement('div');
+        card.className = 'event-card';
+
+        var title = document.createElement('h3');
+        title.textContent = ev.title || '';
+        card.appendChild(title);
+
+        if (ev.description) {
+          var desc = document.createElement('p');
+          desc.textContent = ev.description;
+          card.appendChild(desc);
+        }
+
+        var meta = document.createElement('div');
+        meta.className = 'event-meta';
+        if (ev.date) {
+          var dateSpan = document.createElement('span');
+          dateSpan.textContent = formatDate(ev.date) + (ev.time ? ', ' + ev.time : '');
+          meta.appendChild(dateSpan);
+        }
+        if (ev.location) {
+          var locSpan = document.createElement('span');
+          locSpan.textContent = ev.location;
+          meta.appendChild(locSpan);
+        }
+        card.appendChild(meta);
+
+        if (ev.price) {
+          var price = document.createElement('p');
+          price.className = 'event-price';
+          price.textContent = ev.price;
+          card.appendChild(price);
+        }
+
+        if (ev.signup_url) {
+          var ctaWrap = document.createElement('div');
+          ctaWrap.className = 'event-cta';
+          var cta = document.createElement('a');
+          cta.href = ev.signup_url;
+          cta.className = 'btn btn--gold';
+          cta.textContent = 'Anmäl dig här';
+          ctaWrap.appendChild(cta);
+          card.appendChild(ctaWrap);
+        }
+
+        return card;
+      }
+
+      function showEmpty() {
+        var msg = document.createElement('p');
+        msg.className = 'events-empty';
+        msg.textContent = 'Inga kommande event just nu. Håll utkik efter nya datum snart.';
+        container.appendChild(msg);
+      }
+
+      fetch('events/index.json')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var files = data.events || [];
+          var promises = files.map(function (filename) {
+            return fetch('events/' + filename)
+              .then(function (r) { return r.text(); })
+              .then(function (text) { return parseFrontMatter(text); });
+          });
+          return Promise.all(promises);
+        })
+        .then(function (events) {
+          var upcoming = events.filter(function (e) { return isUpcoming(e.date); });
+          upcoming.sort(function (a, b) {
+            if (a.date < b.date) return -1;
+            if (a.date > b.date) return 1;
+            return 0;
+          });
+          if (upcoming.length === 0) {
+            showEmpty();
+            return;
+          }
+          var grid = document.createElement('div');
+          grid.className = 'events-grid';
+          upcoming.forEach(function (ev) {
+            grid.appendChild(renderCard(ev));
+          });
+          container.appendChild(grid);
+        })
+        .catch(function () {
+          showEmpty();
+        });
+    }());
+
+    // ---- CONTENT LOADER ----
+    // Fetches /content/*.md files and patches the corresponding DOM sections.
+    // Falls back silently to the hardcoded HTML if a file cannot be loaded
+    // or a field is missing.
+    (function () {
+
+      // ------------------------------------------------------------------
+      // Extended frontmatter parser (YAML subset).
+      // Handles three value types in addition to the simple key:"value" form
+      // already used by the events loader:
+      //
+      //  1. Block scalar (literal multiline string):
+      //        key: |
+      //          line one
+      //          line two
+      //
+      //  2. Sequence of mappings (list of objects):
+      //        key:
+      //          - field1: "value"
+      //            field2: "value"
+      //          - field1: "other"
+      // ------------------------------------------------------------------
+      function stripQuotes(s) {
+        s = s.trim();
+        if (s.length >= 2 &&
+            ((s.charAt(0) === '"' && s.charAt(s.length - 1) === '"') ||
+             (s.charAt(0) === "'" && s.charAt(s.length - 1) === "'"))) {
+          return s.slice(1, -1);
+        }
+        return s;
+      }
+
+      function parseFm(text) {
+        var result = {};
+        try {
+          var idx1 = text.indexOf('---');
+          var idx2 = text.indexOf('---', idx1 + 3);
+          if (idx1 === -1 || idx2 === -1) return result;
+          var yaml = text.slice(idx1 + 3, idx2);
+          var lines = yaml.split('\n');
+          var i = 0;
+
+          while (i < lines.length) {
+            var line = lines[i];
+            if (!line.trim()) { i++; continue; }
+
+            // Top-level key must start at column 0
+            var topKey = line.match(/^([a-zA-Z_]\w*):\s*(.*)/);
+            if (!topKey) { i++; continue; }
+
+            var key = topKey[1];
+            var rest = topKey[2].trim();
+
+            if (rest === '|') {
+              // ---- Block scalar ----
+              // Collect all indented lines; first line sets the base indent.
+              i++;
+              var buf = [];
+              var baseIndent = -1;
+              while (i < lines.length) {
+                var bl = lines[i];
+                if (bl.trim() === '') { buf.push(''); i++; continue; }
+                var indent = bl.match(/^(\s*)/)[1].length;
+                if (indent === 0) break; // back to top-level key
+                if (baseIndent === -1) baseIndent = indent;
+                buf.push(bl.slice(baseIndent));
+                i++;
+              }
+              // YAML "clip" chomping: remove trailing blank lines
+              while (buf.length && buf[buf.length - 1] === '') buf.pop();
+              result[key] = buf.join('\n');
+
+            } else if (rest === '') {
+              // Might be a sequence — peek ahead for an indented dash
+              i++;
+              var peek = i;
+              while (peek < lines.length && !lines[peek].trim()) peek++;
+
+              if (peek < lines.length && /^\s+-/.test(lines[peek])) {
+                // ---- Sequence of mappings ----
+                var items = [];
+                var cur = null;
+                while (i < lines.length) {
+                  var ll = lines[i];
+                  if (!ll.trim()) { i++; continue; }
+                  // An unindented line means we are back at top level
+                  if (!/^\s/.test(ll)) break;
+
+                  var li = ll.match(/^(\s+)-\s+(.*)/);
+                  if (li) {
+                    // Start of a new sequence entry
+                    if (cur !== null) items.push(cur);
+                    cur = {};
+                    // First property may appear inline: "- key: value"
+                    var inl = li[2].trim();
+                    var ik = inl.match(/^([a-zA-Z_]\w*):\s*(.*)/);
+                    if (ik) cur[ik[1]] = stripQuotes(ik[2]);
+                    i++;
+                  } else {
+                    // A property of the current entry
+                    var pr = ll.match(/^\s+([a-zA-Z_]\w*):\s*(.*)/);
+                    if (pr && cur !== null) cur[pr[1]] = stripQuotes(pr[2]);
+                    i++;
+                  }
+                }
+                if (cur !== null) items.push(cur);
+                result[key] = items;
+
+              } else {
+                result[key] = '';
+                i = peek; // skip any blank lines we already scanned
+              }
+
+            } else {
+              result[key] = stripQuotes(rest);
+              i++;
+            }
+          }
+        } catch (e) { /* return whatever was parsed so far */ }
+        return result;
+      }
+
+      // Helpers
+      function setText(el, val) {
+        if (el && val !== undefined && val !== '') el.textContent = val;
+      }
+      function setHtml(el, val) {
+        if (el && val !== undefined && val !== '') el.innerHTML = val;
+      }
+      function qs(sel) { return document.querySelector(sel); }
+
+      // Thin-stroke SVG icons keyed by name; stroke="currentColor" so colour
+      // is controlled by the parent element's CSS color property.
+      var ICONS = {
+        leaf:    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" aria-hidden="true"><path d="M2 22c1-4 4-8 8-12S18 2 22 2c-1 4-4 8-8 12S3 22 2 22z"/><line x1="12" y1="10" x2="2" y2="22"/></svg>',
+        heart:   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',
+        moon:    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+        sparkle: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32" aria-hidden="true"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>'
+      };
+
+      // Rebuild a list of offer items inside a container element.
+      // isCheck=true renders .check-item (no body), false renders .offer-item with title+body.
+      function renderOfferItems(container, items, isCheck) {
+        if (!container) return;
+        container.innerHTML = '';
+        items.forEach(function (item) {
+          var div = document.createElement('div');
+          div.className = isCheck ? 'check-item' : 'offer-item';
+          if (isCheck) {
+            div.textContent = item.title || '';
+          } else {
+            var t = document.createElement('div');
+            t.className = 'offer-item-title';
+            t.textContent = item.title || '';
+            div.appendChild(t);
+            if (item.body) {
+              var b = document.createElement('div');
+              b.className = 'offer-item-body';
+              b.textContent = item.body;
+              div.appendChild(b);
+            }
+          }
+          container.appendChild(div);
+        });
+      }
+
+      // One applier per content file; each updates its section's DOM nodes.
+      var APPLIERS = {
+
+        hero: function (d) {
+          if (d.quote) qs('#hero .hero-quote').textContent = '\u201c' + d.quote + '\u201d';
+          setText(qs('#hero .hero-attribution'), d.attribution);
+        },
+
+        'om-asa': function (d) {
+          setText(qs('#om-asa .overline'), d.overline);
+          setHtml(qs('#om-asa .section-heading'), d.heading);
+          setText(qs('#om-asa .section-body'), d.body);
+        },
+
+        'om-kursen': function (d) {
+          setText(qs('#om-kursen .overline'), d.overline);
+          setHtml(qs('#om-kursen .section-heading'), d.heading);
+          setText(qs('#om-kursen .section-body'), d.body);
+          var btn = qs('#om-kursen .btn');
+          if (btn) {
+            if (d.cta_label) setText(btn, d.cta_label);
+            if (d.cta_href) btn.setAttribute('href', d.cta_href);
+          }
+        },
+
+        kursinnehall: function (d) {
+          setText(qs('#kursinnehall .overline'), d.overline);
+          setHtml(qs('#kursinnehall .section-heading'), d.heading);
+          if (Array.isArray(d.items)) {
+            var c = qs('#kursinnehall .course-cards');
+            if (c) {
+              c.innerHTML = '';
+              d.items.forEach(function (item) {
+                var card = document.createElement('div');
+                card.className = 'course-card';
+                var num = document.createElement('div');
+                num.className = 'course-number';
+                num.textContent = item.number || '';
+                var txt = document.createElement('div');
+                txt.className = 'course-text';
+                var h = document.createElement('h3');
+                h.textContent = item.title || '';
+                var p = document.createElement('p');
+                p.textContent = item.body || '';
+                txt.appendChild(h);
+                txt.appendChild(p);
+                card.appendChild(num);
+                card.appendChild(txt);
+                c.appendChild(card);
+              });
+            }
+          }
+        },
+
+        him: function (d) {
+          setText(qs('#him .overline'), d.overline);
+          setHtml(qs('#him .section-heading'), d.heading);
+          if (Array.isArray(d.items)) {
+            var g = qs('#him .him-grid');
+            if (g) {
+              g.innerHTML = '';
+              d.items.forEach(function (item) {
+                var card = document.createElement('div');
+                card.className = 'him-card';
+                var letter = document.createElement('div');
+                letter.className = 'him-letter';
+                letter.textContent = item.letter || '';
+                var h = document.createElement('h3');
+                h.textContent = item.title || '';
+                var p = document.createElement('p');
+                p.textContent = item.body || '';
+                card.appendChild(letter);
+                card.appendChild(h);
+                card.appendChild(p);
+                g.appendChild(card);
+              });
+            }
+          }
+        },
+
+        erbjuder: function (d) {
+          setText(qs('#erbjuder .overline'), d.overline);
+          setHtml(qs('#erbjuder .section-heading'), d.heading);
+          setText(document.getElementById('erbjuder-karna-header'), d.karna_heading);
+          setText(document.getElementById('erbjuder-ceremony-header'), d.ceremony_heading);
+          setText(document.getElementById('erbjuder-kommande-header'), d.kommande_heading);
+          setText(qs('#erbjuder .for-dig-heading'), d.for_dig_heading);
+          if (Array.isArray(d.karna_items)) {
+            renderOfferItems(document.getElementById('erbjuder-karna-items'), d.karna_items, false);
+          }
+          if (Array.isArray(d.ceremony_items)) {
+            renderOfferItems(document.getElementById('erbjuder-ceremony-items'), d.ceremony_items, false);
+          }
+          if (Array.isArray(d.kommande_items)) {
+            renderOfferItems(document.getElementById('erbjuder-kommande-items'), d.kommande_items, true);
+          }
+          if (Array.isArray(d.for_dig_items)) {
+            var fg = qs('#erbjuder .for-dig-grid');
+            if (fg) {
+              fg.innerHTML = '';
+              d.for_dig_items.forEach(function (item) {
+                var div = document.createElement('div');
+                div.className = 'for-dig-item';
+                var iconDiv = document.createElement('div');
+                iconDiv.className = 'for-dig-icon';
+                iconDiv.innerHTML = ICONS[item.icon] || ICONS.sparkle;
+                var p = document.createElement('p');
+                p.textContent = item.text || '';
+                div.appendChild(iconDiv);
+                div.appendChild(p);
+                fg.appendChild(div);
+              });
+            }
+          }
+          if (d.closing) {
+            var cl = qs('#erbjuder .for-dig-closing');
+            if (cl) cl.innerHTML = '<em>' + d.closing + '</em>';
+          }
+        },
+
+        testimonials: function (d) {
+          setText(qs('#testimonials .overline'), d.overline);
+          setHtml(qs('#testimonials .section-heading'), d.heading);
+          if (Array.isArray(d.items)) {
+            var g = qs('#testimonials .testimonial-grid');
+            if (g) {
+              g.innerHTML = '';
+              d.items.forEach(function (item) {
+                var card = document.createElement('div');
+                card.className = 'testimonial-card';
+                var quote = document.createElement('p');
+                quote.className = 'testimonial-quote';
+                // Wrap in typographic curly quotes, matching the site's aesthetic
+                quote.textContent = '\u201c' + (item.quote || '') + '\u201d';
+                var attr = document.createElement('p');
+                attr.className = 'testimonial-attr';
+                attr.textContent = item.attr || '';
+                card.appendChild(quote);
+                card.appendChild(attr);
+                g.appendChild(card);
+              });
+            }
+          }
+        },
+
+        kontakt: function (d) {
+          setText(qs('#kontakt .overline'), d.overline);
+          setHtml(qs('#kontakt .section-heading'), d.heading);
+          setText(qs('#kontakt .section-body'), d.body);
+          setText(qs('#kontakt .booking-box p'), d.booking_body);
+          var btns = document.querySelectorAll('#kontakt .cta-group .btn');
+          if (btns[0]) {
+            if (d.cta_email) setText(btns[0], d.cta_email);
+            if (d.cta_email_href) btns[0].setAttribute('href', d.cta_email_href);
+          }
+          if (btns[1]) {
+            if (d.cta_phone) setText(btns[1], d.cta_phone);
+            if (d.cta_phone_href) btns[1].setAttribute('href', d.cta_phone_href);
+          }
+        }
+
+      };
+
+      // Fetch each content file and apply; any error falls back to hardcoded HTML
+      ['hero', 'om-asa', 'om-kursen', 'kursinnehall', 'him', 'erbjuder', 'testimonials', 'kontakt'].forEach(function (name) {
+        fetch('content/' + name + '.md')
+          .then(function (r) {
+            if (!r.ok) throw new Error('not found');
+            return r.text();
+          })
+          .then(function (text) {
+            var data = parseFm(text);
+            if (APPLIERS[name]) {
+              try { APPLIERS[name](data); } catch (e) { /* fall back to hardcoded */ }
+            }
+          })
+          .catch(function () { /* fall back to hardcoded HTML */ });
+      });
+
+    }());
+  </script>
+</body>
+</html>

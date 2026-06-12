@@ -1,0 +1,23 @@
+---
+overline: "Kursinnehåll"
+heading: "Vad ingår i kursen"
+items:
+  - number: "01"
+    title: "Naturbaserad visdom"
+    body: "Guidade övningar som anknyter dig till jordens rytmer."
+  - number: "02"
+    title: "Meditation & energiarbete"
+    body: "Andningsarbete, meditation och kroppsorienterade tekniker."
+  - number: "03"
+    title: "Självinsikt & transformation"
+    body: "Forntida visdomstraditioner integrerade på ett modernt sätt."
+  - number: "04"
+    title: "HIM-processen"
+    body: "En unik metod för att bryta återkommande mönster."
+  - number: "05"
+    title: "Gemenskap & stöd"
+    body: "Delade upplevelser i en trygg grupp."
+  - number: "06"
+    title: "Personlig integrering"
+    body: "Reflektionsövningar så att insikterna landar på djupet."
+---
